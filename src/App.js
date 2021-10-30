@@ -1,7 +1,9 @@
 import "./App.css";
 
+import Activity from "./container/Activity/Activity";
+
 function App() {
-    return <div className='App'></div>;
+    return <Activity />;
 }
 
 export default App;
