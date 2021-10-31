@@ -1,8 +1,8 @@
 import React from "react";
 
-const DateInput = ({ name, label, value, onChange }) => {
+const Input = ({ name, label, value, onChange }) => {
     return (
-        <div className='flex gap-2 text-gray-600 items-baseline'>
+        <div className='flex  text-gray-600 gap-2 items-baseline'>
             <label htmlFor={name} className='label'>
                 {label}
             </label>
@@ -10,7 +10,7 @@ const DateInput = ({ name, label, value, onChange }) => {
                 className=' input'
                 id={name}
                 name={name}
-                type='date'
+                type='text'
                 value={value}
                 onChange={onChange}
             ></input>
@@ -18,4 +18,4 @@ const DateInput = ({ name, label, value, onChange }) => {
     );
 };
 
-export default DateInput;
+export default Input;

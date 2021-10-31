@@ -1,10 +1,16 @@
-import DateInput from "../../component/UI/DateInput/Dateinput";
+import { useState } from "react";
+import AddActivity from "../../component/Activity/AddActivity";
 
 const Activity = () => {
+    const [isAdd, setIsAdd] = useState(false);
+
+    const addActivityHandler = () => {
+        setIsAdd((prevStete) => !prevStete);
+    };
     return (
         <div>
-            <input name='activityName' type='text' />
-            <DateInput />
+            <button onClick={addActivityHandler}>Add</button>
+            {isAdd && <AddActivity />}
         </div>
     );
 };

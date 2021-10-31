@@ -3,9 +3,15 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {},
+        fontFamily: {
+            main: ["Nunito"],
+        },
     },
     variants: {
-        extend: {},
+        extend: {
+            backgroundColor: ["checked"],
+            borderColor: ["checked"],
+        },
     },
     plugins: [],
 };
