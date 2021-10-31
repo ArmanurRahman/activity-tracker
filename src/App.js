@@ -1,9 +1,9 @@
 import "./App.css";
 
-import Activity from "./container/Activity/Activity";
+import Home from "./container/Home/Home";
 
 function App() {
-    return <Activity />;
+    return <Home />;
 }
 
 export default App;
