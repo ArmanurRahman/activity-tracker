@@ -1,8 +1,8 @@
 const Card: React.FC = () => {
     return (
         <div
-            className='w-56 h-56 rounded-lg shadow-lg p-4 flex flex-col gap-2 
-        transform transition duration-500 hover:scale-110'
+            className='w-56 h-56 rounded-lg p-4 flex flex-col gap-2 
+            transform transition duration-500 hover:scale-110 bg-white hover:shadow-md '
         >
             <div className='flex justify-between'>
                 <i>

@@ -46,7 +46,7 @@ const Home: React.FC = () => {
                     />
                 </div>
             </div>
-            <div className='w-full p-4 lg:p-10 bg-green-50 h-screen'>
+            <div className='w-full p-4 lg:p-10 bg-green-50 h-full'>
                 {content}
             </div>
         </div>
