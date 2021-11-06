@@ -1,6 +1,13 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
-const Input = ({ name, label, value, onChange }) => {
+interface InputInterface {
+    name: string;
+    label: string;
+    value: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Input: React.FC<InputInterface> = ({ name, label, value, onChange }) => {
     return (
         <div className='flex  text-gray-600 gap-2 items-baseline'>
             <label htmlFor={name} className='label'>

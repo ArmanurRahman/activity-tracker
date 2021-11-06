@@ -1,4 +1,12 @@
-const MainNavigation = ({ currentContent, onContentChange }) => {
+interface SideNavigator {
+    currentContent: string;
+    onContentChange: Function;
+}
+
+const MainNavigation: React.FC<SideNavigator> = ({
+    currentContent,
+    onContentChange,
+}) => {
     return (
         <div
             className='flex lg:flex-col items-center justify-center h-full lg:space-y-4 space-x-4 

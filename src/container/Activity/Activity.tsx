@@ -1,8 +1,8 @@
 import { useState } from "react";
 import AddActivity from "../../component/Activity/AddActivity";
 
-const Activity = () => {
-    const [isAdd, setIsAdd] = useState(false);
+const Activity: React.FC = () => {
+    const [isAdd, setIsAdd] = useState<boolean>(false);
 
     const addActivityHandler = () => {
         setIsAdd((prevStete) => !prevStete);

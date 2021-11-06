@@ -1,4 +1,16 @@
-const Checkbox = ({ id, checked, onChange, label }) => {
+interface CheckboxInterface {
+    id: string;
+    checked: boolean;
+    onChange: () => void;
+    label: string;
+}
+
+const Checkbox: React.FC<CheckboxInterface> = ({
+    id,
+    checked,
+    onChange,
+    label,
+}) => {
     return (
         <div className='flex items-center gap-1 text-gray-600 cursor-pointer'>
             <label className=' flex cursor-pointer relative gap-1' htmlFor={id}>

@@ -1,10 +1,29 @@
-import { useReducer } from "react";
+import React, { useReducer } from "react";
 import Button from "../UI/Button/Button";
 import Checkbox from "../UI/Checkbox/Checkbox";
 import DateInput from "../UI/DateInput/Dateinput";
 import Input from "../UI/Input/Input";
 
-const initState = {
+interface ActivityForm {
+    name: string;
+    startDate: string;
+    endDate: string;
+    mon: boolean;
+    tues: boolean;
+    wed: boolean;
+    thus: boolean;
+    fri: boolean;
+    sat: boolean;
+    sun: boolean;
+}
+
+type Action =
+    | { type: "name"; value: string }
+    | { type: "startDate"; value: string }
+    | { type: "endDate"; value: string }
+    | { type: "day"; day: keyof ActivityForm };
+
+const initState: ActivityForm = {
     name: "",
     startDate: "",
     endDate: "",
@@ -16,7 +35,10 @@ const initState = {
     sat: false,
     sun: false,
 };
-const activityReducer = (initState, action) => {
+const activityReducer = (
+    initState: ActivityForm,
+    action: Action
+): ActivityForm => {
     switch (action.type) {
         case "name":
             return { ...initState, name: action.value };
@@ -31,10 +53,11 @@ const activityReducer = (initState, action) => {
             };
         default:
             new Error("Invalid action type!");
+            return initState;
     }
 };
 
-const Activity = () => {
+const Activity: React.FC = () => {
     const [state, dispatch] = useReducer(activityReducer, initState);
     return (
         <div className='flex flex-col gap-8 items-start max-w-lg p-4 flex-1 bg-gray-100 rounded-md'>
@@ -42,7 +65,7 @@ const Activity = () => {
                 name='name'
                 label='Name'
                 value={state.name}
-                onChange={(e) =>
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     dispatch({ type: "name", value: e.target.value })
                 }
             />
@@ -50,7 +73,7 @@ const Activity = () => {
                 name='startDate'
                 label='Start Date'
                 value={state.startDate}
-                onChange={(e) =>
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     dispatch({ type: "startDate", value: e.target.value })
                 }
             />
@@ -58,7 +81,7 @@ const Activity = () => {
                 name='endDate'
                 label='End Date'
                 value={state.endDate}
-                onChange={(e) =>
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     dispatch({ type: "endDate", value: e.target.value })
                 }
             />
@@ -112,7 +135,7 @@ const Activity = () => {
 
             <div className='flex gap-2 justify-end items-end w-full'>
                 <Button label='Save' type='primary' onClick={() => {}} />
-                <Button label='Cancel' type='seconday' onClick={() => {}} />
+                <Button label='Cancel' type='secondary' onClick={() => {}} />
             </div>
         </div>
     );

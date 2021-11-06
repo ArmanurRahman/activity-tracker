@@ -1,15 +1,17 @@
 import { useState } from "react";
 import SideNavigation from "../../component/Navigation/SideNavigation";
 import Activity from "../Activity/Activity";
+import * as types from "../../types/types";
 
-const Home = () => {
-    const [activeContent, setActiveContent] = useState("dashboard");
+const Home: React.FC = () => {
+    const [activeContent, setActiveContent] =
+        useState<types.NavigationType>("dashboard");
 
-    const changeContentHandler = (name) => {
+    const changeContentHandler = (name: types.NavigationType) => {
         setActiveContent(name);
     };
     let content = null;
-    if (activeContent === "activity") {
+    if (activeContent === "dashboard") {
         content = <Activity />;
     }
     return (

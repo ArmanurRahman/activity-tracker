@@ -1,6 +1,18 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
-const DateInput = ({ name, label, value, onChange }) => {
+interface DateInputInterface {
+    name: string;
+    label: string;
+    value: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const DateInput: React.FC<DateInputInterface> = ({
+    name,
+    label,
+    value,
+    onChange,
+}) => {
     return (
         <div className='flex gap-2 text-gray-600 items-baseline'>
             <label htmlFor={name} className='label'>
