@@ -2,6 +2,7 @@ import { useState } from "react";
 import SideNavigation from "../../component/Navigation/SideNavigation";
 import Activity from "../Activity/Activity";
 import * as types from "../../types/types";
+import Dashboard from "../Dashboard/Dashboard";
 
 const Home: React.FC = () => {
     const [activeContent, setActiveContent] =
@@ -12,8 +13,11 @@ const Home: React.FC = () => {
     };
     let content = null;
     if (activeContent === "dashboard") {
+        content = <Dashboard />;
+    } else if (activeContent === "activity") {
         content = <Activity />;
     }
+
     return (
         <div className='flex'>
             <div className='fixed lg:static bottom-0 w-full lg:w-24 lg:h-full z-10'>
@@ -42,7 +46,9 @@ const Home: React.FC = () => {
                     />
                 </div>
             </div>
-            <div className='w-full p-4 lg:p-10'>{content}</div>
+            <div className='w-full p-4 lg:p-10 bg-green-50 h-screen'>
+                {content}
+            </div>
         </div>
     );
 };

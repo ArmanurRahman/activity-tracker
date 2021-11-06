@@ -16,6 +16,7 @@ module.exports = {
             backgroundColor: ["checked"],
             borderColor: ["checked"],
             translate: ["responsive", "group-hover", "hover", "focus"],
+            scale: ["active", "group-hover"],
         },
     },
     plugins: [],
