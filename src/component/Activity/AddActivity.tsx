@@ -33,6 +33,7 @@ type Action =
     | { type: "endDate"; value: string }
     | { type: "from"; value: string }
     | { type: "to"; value: string }
+    | { type: "clear" }
     | { type: "day"; day: keyof ActivityForm };
 
 const initState: ActivityForm = {
@@ -75,6 +76,23 @@ const activityReducer = (
                 ...initState,
                 [action.day]: !initState[action.day],
             };
+        case "clear":
+            return {
+                name: "",
+                category: "",
+                description: "",
+                startDate: "",
+                endDate: "",
+                from: "",
+                to: "",
+                mon: false,
+                tues: false,
+                wed: false,
+                thus: false,
+                fri: false,
+                sat: false,
+                sun: false,
+            };
         default:
             new Error("Invalid action type!");
             return initState;
@@ -85,18 +103,21 @@ interface SaveInterface {
     loading: boolean;
     success: string;
     error: string;
+    warning: string;
 }
 
 const saveInitState: SaveInterface = {
     loading: false,
     success: "",
     error: "",
+    warning: "",
 };
 
 type SaveAction =
     | { type: "loading" }
     | { type: "success"; message: string }
-    | { type: "error"; message: string };
+    | { type: "error"; message: string }
+    | { type: "warning"; message: string };
 
 const saveReducer = (saveInitState: SaveInterface, action: SaveAction) => {
     switch (action.type) {
@@ -108,6 +129,7 @@ const saveReducer = (saveInitState: SaveInterface, action: SaveAction) => {
                 loading: false,
                 success: action.message,
                 error: "",
+                warning: "",
             };
         case "error":
             return {
@@ -115,6 +137,15 @@ const saveReducer = (saveInitState: SaveInterface, action: SaveAction) => {
                 loading: false,
                 success: "",
                 error: action.message,
+                warning: "",
+            };
+        case "warning":
+            return {
+                ...saveInitState,
+                loading: false,
+                success: "",
+                error: "",
+                warning: action.message,
             };
         default:
             return saveInitState;
@@ -125,7 +156,22 @@ const Activity: React.FC = () => {
     const [state, dispatch] = useReducer(activityReducer, initState);
     const [saveState, saveDispatch] = useReducer(saveReducer, saveInitState);
 
+    const checkValidity = (): boolean => {
+        if (
+            state.name.trim() === "" ||
+            state.category.trim() === "" ||
+            state.startDate.trim() === ""
+        ) {
+            saveDispatch({ type: "warning", message: "Invalid input!" });
+            return false;
+        }
+        return true;
+    };
+
     const saveHandler = () => {
+        if (!checkValidity()) {
+            return;
+        }
         saveDispatch({ type: "loading" });
         fetch(
             "https://activity-tracker-55d23-default-rtdb.firebaseio.com/activity.json",
@@ -137,6 +183,7 @@ const Activity: React.FC = () => {
             .then((response) => response.json())
             .then((data) => {
                 saveDispatch({ type: "success", message: "" });
+                clearControls();
             })
             .catch((e) => {
                 console.log(e);
@@ -144,11 +191,15 @@ const Activity: React.FC = () => {
             });
     };
 
+    const clearControls = () => {
+        dispatch({ type: "clear" });
+    };
+
     return (
         <div className='flex flex-col gap-8 items-start max-w-lg p-4 flex-1  rounded-md'>
             <Input
                 name='name'
-                label='Name'
+                label='Name*'
                 value={state.name}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     dispatch({ type: "name", value: e.target.value })
@@ -156,7 +207,7 @@ const Activity: React.FC = () => {
             />
             <CategorySelect
                 name='category'
-                label='Category'
+                label='Category*'
                 value={state.category}
                 onChange={(value: types.Category) =>
                     dispatch({ type: "category", value: value })
@@ -172,7 +223,7 @@ const Activity: React.FC = () => {
             />
             <DateInput
                 name='startDate'
-                label='Start Date'
+                label='Start Date*'
                 value={state.startDate}
                 type='date'
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

@@ -14,7 +14,7 @@ const MultiInput: React.FC<MultiInputInterface> = ({
     onChange,
 }) => {
     return (
-        <div className='flex gap-2 text-gray-600 items-baseline'>
+        <div className='flex gap-2 text-gray-600 items-start'>
             <label htmlFor={name} className='label'>
                 {label}
             </label>

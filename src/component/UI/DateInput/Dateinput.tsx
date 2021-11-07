@@ -16,7 +16,7 @@ const DateInput: React.FC<DateInputInterface> = ({
     type,
 }) => {
     return (
-        <div className='flex gap-2 text-gray-600 items-baseline'>
+        <div className='flex gap-2 text-gray-600 items-start'>
             <label htmlFor={name} className='label'>
                 {label}
             </label>

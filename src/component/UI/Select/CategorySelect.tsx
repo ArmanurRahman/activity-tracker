@@ -49,14 +49,15 @@ const CategorySelect: React.FC<SelectInterface> = ({
     };
 
     return (
-        <div className='flex gap-2 text-gray-600 items-baseline'>
+        <div className='flex gap-2 text-gray-600 items-start'>
             <label htmlFor={name} className='label'>
                 {label}
             </label>
             <div className='mt-1 relative'>
                 <button
                     type='button'
-                    className='input relative  bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 sm:text-sm'
+                    className='input relative  bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 
+                    py-2 text-left cursor-default focus:outline-none focus:ring-1 sm:text-sm h-10'
                     aria-haspopup='listbox'
                     aria-expanded='true'
                     aria-labelledby='listbox-label'

@@ -9,7 +9,7 @@ interface InputInterface {
 
 const Input: React.FC<InputInterface> = ({ name, label, value, onChange }) => {
     return (
-        <div className='flex  text-gray-600 gap-2 items-baseline'>
+        <div className='flex  text-gray-600 gap-2 items-start'>
             <label htmlFor={name} className='label'>
                 {label}
             </label>
