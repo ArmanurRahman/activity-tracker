@@ -3,6 +3,7 @@ import Button from "../UI/Button/Button";
 import Checkbox from "../UI/Checkbox/Checkbox";
 import DateInput from "../UI/DateInput/Dateinput";
 import Input from "../UI/Input/Input";
+import MultiInput from "../UI/MuntiInput/MultiInput";
 
 interface ActivityForm {
     name: string;
@@ -69,10 +70,17 @@ const Activity: React.FC = () => {
                     dispatch({ type: "name", value: e.target.value })
                 }
             />
+            <MultiInput
+                name='description'
+                label='Description'
+                value=''
+                onChange={() => {}}
+            />
             <DateInput
                 name='startDate'
                 label='Start Date'
                 value={state.startDate}
+                type='date'
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     dispatch({ type: "startDate", value: e.target.value })
                 }
@@ -81,8 +89,27 @@ const Activity: React.FC = () => {
                 name='endDate'
                 label='End Date'
                 value={state.endDate}
+                type='date'
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     dispatch({ type: "endDate", value: e.target.value })
+                }
+            />
+            <DateInput
+                name='from'
+                label='From'
+                value={state.startDate}
+                type='time'
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    dispatch({ type: "startDate", value: e.target.value })
+                }
+            />
+            <DateInput
+                name='to'
+                label='To'
+                value={state.startDate}
+                type='time'
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    dispatch({ type: "startDate", value: e.target.value })
                 }
             />
             <div className=' border p-2 rounded-md shadow-md  w-full'>

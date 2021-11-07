@@ -1,35 +1,33 @@
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 
-interface DateInputInterface {
+interface MultiInputInterface {
     name: string;
     label: string;
     value: string;
-    type: "date" | "time";
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const DateInput: React.FC<DateInputInterface> = ({
+const MultiInput: React.FC<MultiInputInterface> = ({
     name,
     label,
     value,
     onChange,
-    type,
 }) => {
     return (
         <div className='flex gap-2 text-gray-600 items-baseline'>
             <label htmlFor={name} className='label'>
                 {label}
             </label>
-            <input
-                className=' input'
+            <textarea
+                className='input'
+                rows={3}
                 id={name}
                 name={name}
-                type={type}
                 value={value}
                 onChange={onChange}
-            ></input>
+            ></textarea>
         </div>
     );
 };
 
-export default DateInput;
+export default MultiInput;

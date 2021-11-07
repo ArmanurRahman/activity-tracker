@@ -6,15 +6,12 @@ import Modal from "../../component/Modal/Modal";
 const Activity: React.FC = () => {
     const [isAdd, setIsAdd] = useState<boolean>(false);
 
-    const addActivityHandler = () => {
-        setIsAdd((prevStete) => !prevStete);
-    };
     return (
         <div className='w-full h-full flex gap-8 flex-wrap'>
             <div className='w-56 h-56 bg-white rounded-lg'>
                 <div
                     className='flex items-center justify-center h-full text-green-600 cursor-pointer'
-                    onClick={addActivityHandler}
+                    onClick={() => setIsAdd(true)}
                 >
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -39,7 +36,7 @@ const Activity: React.FC = () => {
             <ActivityCard />
 
             {isAdd && (
-                <Modal>
+                <Modal onClose={() => setIsAdd(false)}>
                     <AddActivity />
                 </Modal>
             )}

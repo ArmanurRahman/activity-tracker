@@ -1,4 +1,8 @@
-const Modal: React.FC = (props) => {
+interface props {
+    onClose: () => void;
+}
+
+const Modal: React.FC<props> = (props) => {
     return (
         <div
             className='fixed z-10 inset-0 overflow-y-auto'
@@ -10,6 +14,7 @@ const Modal: React.FC = (props) => {
                 <div
                     className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity'
                     aria-hidden='true'
+                    onClick={props.onClose}
                 ></div>
 
                 <span
