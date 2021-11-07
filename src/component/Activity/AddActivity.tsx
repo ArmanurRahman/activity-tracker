@@ -7,6 +7,7 @@ import MultiInput from "../UI/MuntiInput/MultiInput";
 import CategorySelect from "../UI/Select/CategorySelect";
 import * as types from "../../types/types";
 import Spinner from "../UI/Spinner/Spinner";
+import WarningAlert from "../UI/Alert/WarningAlert";
 
 interface ActivityForm {
     name: string;
@@ -117,7 +118,8 @@ type SaveAction =
     | { type: "loading" }
     | { type: "success"; message: string }
     | { type: "error"; message: string }
-    | { type: "warning"; message: string };
+    | { type: "warning"; message: string }
+    | { type: "clear" };
 
 const saveReducer = (saveInitState: SaveInterface, action: SaveAction) => {
     switch (action.type) {
@@ -147,6 +149,14 @@ const saveReducer = (saveInitState: SaveInterface, action: SaveAction) => {
                 error: "",
                 warning: action.message,
             };
+        case "clear":
+            return {
+                loading: false,
+                success: "",
+                error: "",
+                warning: "",
+            };
+
         default:
             return saveInitState;
     }
@@ -197,6 +207,13 @@ const Activity: React.FC = () => {
 
     return (
         <div className='flex flex-col gap-8 items-start max-w-lg p-4 flex-1  rounded-md'>
+            {saveState.warning && (
+                <WarningAlert
+                    message={saveState.warning}
+                    onClose={() => saveDispatch({ type: "clear" })}
+                />
+            )}
+
             <Input
                 name='name'
                 label='Name*'
