@@ -6,6 +6,7 @@ import Input from "../UI/Input/Input";
 import MultiInput from "../UI/MuntiInput/MultiInput";
 import CategorySelect from "../UI/Select/CategorySelect";
 import * as types from "../../types/types";
+import Spinner from "../UI/Spinner/Spinner";
 
 interface ActivityForm {
     name: string;
@@ -80,8 +81,68 @@ const activityReducer = (
     }
 };
 
+interface SaveInterface {
+    loading: boolean;
+    success: string;
+    error: string;
+}
+
+const saveInitState: SaveInterface = {
+    loading: false,
+    success: "",
+    error: "",
+};
+
+type SaveAction =
+    | { type: "loading" }
+    | { type: "success"; message: string }
+    | { type: "error"; message: string };
+
+const saveReducer = (saveInitState: SaveInterface, action: SaveAction) => {
+    switch (action.type) {
+        case "loading":
+            return { ...saveInitState, loading: true, success: "", error: "" };
+        case "success":
+            return {
+                ...saveInitState,
+                loading: false,
+                success: action.message,
+                error: "",
+            };
+        case "error":
+            return {
+                ...saveInitState,
+                loading: false,
+                success: "",
+                error: action.message,
+            };
+        default:
+            return saveInitState;
+    }
+};
+
 const Activity: React.FC = () => {
     const [state, dispatch] = useReducer(activityReducer, initState);
+    const [saveState, saveDispatch] = useReducer(saveReducer, saveInitState);
+
+    const saveHandler = () => {
+        saveDispatch({ type: "loading" });
+        fetch(
+            "https://activity-tracker-55d23-default-rtdb.firebaseio.com/activity.json",
+            {
+                method: "POST",
+                body: JSON.stringify(state),
+            }
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                saveDispatch({ type: "success", message: "" });
+            })
+            .catch((e) => {
+                console.log(e);
+                saveDispatch({ type: "error", message: "Error occurs!" });
+            });
+    };
 
     return (
         <div className='flex flex-col gap-8 items-start max-w-lg p-4 flex-1  rounded-md'>
@@ -193,8 +254,9 @@ const Activity: React.FC = () => {
                 </div>
             </div>
 
-            <div className='flex gap-2 justify-end items-end w-full'>
-                <Button label='Save' type='primary' onClick={() => {}} />
+            <div className='flex gap-2 justify-end w-full items-center'>
+                {saveState.loading && <Spinner size={10} />}
+                <Button label='Save' type='primary' onClick={saveHandler} />
                 <Button label='Cancel' type='secondary' onClick={() => {}} />
             </div>
         </div>

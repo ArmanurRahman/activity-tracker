@@ -9,7 +9,7 @@ const Button: React.FC<ButtonInterface> = ({ label, onClick, type }) => {
     return (
         <button
             className={type === "primary" ? "primaryButton" : "secondaryButton"}
-            onChange={onClick}
+            onClick={onClick}
         >
             {label}
         </button>
