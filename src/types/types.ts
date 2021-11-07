@@ -15,3 +15,10 @@ export type Months =
     | "Oct"
     | "Nov"
     | "Dec";
+export type Category =
+    | "education"
+    | "diet"
+    | "work"
+    | "exercise"
+    | "favourite"
+    | "";

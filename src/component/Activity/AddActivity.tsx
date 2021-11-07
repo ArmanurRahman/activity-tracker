@@ -4,11 +4,17 @@ import Checkbox from "../UI/Checkbox/Checkbox";
 import DateInput from "../UI/DateInput/Dateinput";
 import Input from "../UI/Input/Input";
 import MultiInput from "../UI/MuntiInput/MultiInput";
+import CategorySelect from "../UI/Select/CategorySelect";
+import * as types from "../../types/types";
 
 interface ActivityForm {
     name: string;
+    category: types.Category;
+    description: string;
     startDate: string;
     endDate: string;
+    from: string;
+    to: string;
     mon: boolean;
     tues: boolean;
     wed: boolean;
@@ -20,14 +26,22 @@ interface ActivityForm {
 
 type Action =
     | { type: "name"; value: string }
+    | { type: "category"; value: types.Category }
+    | { type: "description"; value: string }
     | { type: "startDate"; value: string }
     | { type: "endDate"; value: string }
+    | { type: "from"; value: string }
+    | { type: "to"; value: string }
     | { type: "day"; day: keyof ActivityForm };
 
 const initState: ActivityForm = {
     name: "",
+    category: "",
+    description: "",
     startDate: "",
     endDate: "",
+    from: "",
+    to: "",
     mon: false,
     tues: false,
     wed: false,
@@ -43,10 +57,18 @@ const activityReducer = (
     switch (action.type) {
         case "name":
             return { ...initState, name: action.value };
+        case "category":
+            return { ...initState, category: action.value };
+        case "description":
+            return { ...initState, description: action.value };
         case "startDate":
             return { ...initState, startDate: action.value };
         case "endDate":
             return { ...initState, endDate: action.value };
+        case "from":
+            return { ...initState, from: action.value };
+        case "to":
+            return { ...initState, to: action.value };
         case "day":
             return {
                 ...initState,
@@ -60,6 +82,7 @@ const activityReducer = (
 
 const Activity: React.FC = () => {
     const [state, dispatch] = useReducer(activityReducer, initState);
+
     return (
         <div className='flex flex-col gap-8 items-start max-w-lg p-4 flex-1  rounded-md'>
             <Input
@@ -70,11 +93,21 @@ const Activity: React.FC = () => {
                     dispatch({ type: "name", value: e.target.value })
                 }
             />
+            <CategorySelect
+                name='category'
+                label='Category'
+                value={state.category}
+                onChange={(value: types.Category) =>
+                    dispatch({ type: "category", value: value })
+                }
+            />
             <MultiInput
                 name='description'
                 label='Description'
-                value=''
-                onChange={() => {}}
+                value={state.description}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    dispatch({ type: "description", value: e.target.value })
+                }
             />
             <DateInput
                 name='startDate'
@@ -97,19 +130,19 @@ const Activity: React.FC = () => {
             <DateInput
                 name='from'
                 label='From'
-                value={state.startDate}
+                value={state.from}
                 type='time'
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    dispatch({ type: "startDate", value: e.target.value })
+                    dispatch({ type: "from", value: e.target.value })
                 }
             />
             <DateInput
                 name='to'
                 label='To'
-                value={state.startDate}
+                value={state.to}
                 type='time'
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    dispatch({ type: "startDate", value: e.target.value })
+                    dispatch({ type: "to", value: e.target.value })
                 }
             />
             <div className=' border p-2 rounded-md shadow-md  w-full'>
