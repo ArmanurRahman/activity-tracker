@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ActivityCard from "../../component/Activity/ActivityCard";
 import AddActivity from "../../component/Activity/AddActivity";
+import Modal from "../../component/Modal/Modal";
 
 const Activity: React.FC = () => {
     const [isAdd, setIsAdd] = useState<boolean>(false);
@@ -37,7 +38,11 @@ const Activity: React.FC = () => {
             <ActivityCard />
             <ActivityCard />
 
-            {isAdd && <AddActivity />}
+            {isAdd && (
+                <Modal>
+                    <AddActivity />
+                </Modal>
+            )}
         </div>
     );
 };

@@ -60,7 +60,7 @@ const activityReducer = (
 const Activity: React.FC = () => {
     const [state, dispatch] = useReducer(activityReducer, initState);
     return (
-        <div className='flex flex-col gap-8 items-start max-w-lg p-4 flex-1 bg-gray-100 rounded-md'>
+        <div className='flex flex-col gap-8 items-start max-w-lg p-4 flex-1  rounded-md'>
             <Input
                 name='name'
                 label='Name'

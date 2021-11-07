@@ -16,10 +16,10 @@
         @apply w-24 text-gray-600 text-xl;
     }
     .primaryButton {
-        @apply bg-green-600 w-auto px-2 py-1 rounded-md text-white hover:bg-green-800 text-xl;
+        @apply bg-green-600 w-auto px-4 py-2 rounded-md text-white hover:bg-green-800 shadow-sm text-base font-medium;
     }
     .secondaryButton {
-        @apply bg-red-600 w-auto px-2 py-1 rounded-md text-white hover:bg-red-800 text-xl;
+        @apply bg-red-600 w-auto px-4 py-2 rounded-md  hover:bg-red-800 shadow-sm text-base font-medium text-white;
     }
 }
 
