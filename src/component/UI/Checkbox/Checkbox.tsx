@@ -2,7 +2,7 @@ interface CheckboxInterface {
     id: string;
     checked: boolean;
     onChange: () => void;
-    label: string;
+    label?: string;
 }
 
 const Checkbox: React.FC<CheckboxInterface> = ({
