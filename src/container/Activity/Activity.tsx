@@ -7,10 +7,11 @@ import * as interfaceses from "../../interface/interface";
 const Activity: React.FC = () => {
     const [isAdd, setIsAdd] = useState<boolean>(false);
     const [activities, setActivities] = useState<interfaceses.ActivityForm[]>();
+    const [refresh, setRefresh] = useState<boolean>(false);
 
     useEffect(() => {
         fetch(
-            "https://activity-tracker-55d23-default-rtdb.firebaseio.com/activity.json",
+            'https://activity-tracker-55d23-default-rtdb.firebaseio.com/activity.json?orderBy="createdAt"',
             {
                 method: "GET",
             }
@@ -26,9 +27,7 @@ const Activity: React.FC = () => {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
-
-    console.log(activities);
+    }, [refresh]);
 
     return (
         <div className='w-full h-full flex gap-8 flex-wrap'>
@@ -66,7 +65,10 @@ const Activity: React.FC = () => {
 
             {isAdd && (
                 <Modal onClose={() => setIsAdd(false)}>
-                    <AddActivity />
+                    <AddActivity
+                        onFetch={() => setRefresh((prevState) => !prevState)}
+                        onClose={() => setIsAdd(false)}
+                    />
                 </Modal>
             )}
         </div>

@@ -145,8 +145,11 @@ const saveReducer = (saveInitState: SaveInterface, action: SaveAction) => {
             return saveInitState;
     }
 };
-
-const Activity: React.FC = () => {
+interface ActivityInterface {
+    onFetch: () => void;
+    onClose: () => void;
+}
+const Activity: React.FC<ActivityInterface> = ({ onFetch, onClose }) => {
     const [state, dispatch] = useReducer(activityReducer, initState);
     const [saveState, saveDispatch] = useReducer(saveReducer, saveInitState);
 
@@ -171,13 +174,15 @@ const Activity: React.FC = () => {
             "https://activity-tracker-55d23-default-rtdb.firebaseio.com/activity.json",
             {
                 method: "POST",
-                body: JSON.stringify(state),
+                body: JSON.stringify({ ...state, createdAt: new Date() }),
             }
         )
             .then((response) => response.json())
             .then((data) => {
                 saveDispatch({ type: "success", message: "" });
                 clearControls();
+                onFetch();
+                onClose();
             })
             .catch((e) => {
                 console.log(e);
@@ -309,7 +314,7 @@ const Activity: React.FC = () => {
             <div className='flex gap-2 justify-end w-full items-center'>
                 {saveState.loading && <Spinner size={10} />}
                 <Button label='Save' type='primary' onClick={saveHandler} />
-                <Button label='Cancel' type='secondary' onClick={() => {}} />
+                <Button label='Cancel' type='secondary' onClick={onClose} />
             </div>
         </div>
     );
