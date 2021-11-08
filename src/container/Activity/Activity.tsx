@@ -1,10 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ActivityCard from "../../component/Activity/ActivityCard";
 import AddActivity from "../../component/Activity/AddActivity";
 import Modal from "../../component/Modal/Modal";
+import * as interfaceses from "../../interface/interface";
 
 const Activity: React.FC = () => {
     const [isAdd, setIsAdd] = useState<boolean>(false);
+    const [activities, setActivities] = useState<interfaceses.ActivityForm[]>();
+
+    useEffect(() => {
+        fetch(
+            "https://activity-tracker-55d23-default-rtdb.firebaseio.com/activity.json",
+            {
+                method: "GET",
+            }
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                const activities: interfaceses.ActivityForm[] = [];
+                for (let key in data) {
+                    activities.push({ ...data[key], id: key });
+                }
+                setActivities(activities);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
+    console.log(activities);
 
     return (
         <div className='w-full h-full flex gap-8 flex-wrap'>
@@ -29,11 +53,16 @@ const Activity: React.FC = () => {
                     </svg>
                 </div>
             </div>
-            <ActivityCard />
-            <ActivityCard />
-            <ActivityCard />
-            <ActivityCard />
-            <ActivityCard />
+            {activities?.map((item) => (
+                <ActivityCard
+                    key={item.id}
+                    title={item.name}
+                    category={item.category}
+                    from={item.from}
+                    to={item.to}
+                    description={item.description}
+                />
+            ))}
 
             {isAdd && (
                 <Modal onClose={() => setIsAdd(false)}>

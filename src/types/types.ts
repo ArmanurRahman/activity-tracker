@@ -21,4 +21,5 @@ export type Category =
     | "work"
     | "exercise"
     | "favourite"
+    | "other"
     | "";

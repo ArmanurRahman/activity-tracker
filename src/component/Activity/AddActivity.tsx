@@ -8,23 +8,7 @@ import CategorySelect from "../UI/Select/CategorySelect";
 import * as types from "../../types/types";
 import Spinner from "../UI/Spinner/Spinner";
 import WarningAlert from "../UI/Alert/WarningAlert";
-
-interface ActivityForm {
-    name: string;
-    category: types.Category;
-    description: string;
-    startDate: string;
-    endDate: string;
-    from: string;
-    to: string;
-    mon: boolean;
-    tues: boolean;
-    wed: boolean;
-    thus: boolean;
-    fri: boolean;
-    sat: boolean;
-    sun: boolean;
-}
+import * as interfaceses from "../../interface/interface";
 
 type Action =
     | { type: "name"; value: string }
@@ -35,9 +19,9 @@ type Action =
     | { type: "from"; value: string }
     | { type: "to"; value: string }
     | { type: "clear" }
-    | { type: "day"; day: keyof ActivityForm };
+    | { type: "day"; day: keyof interfaceses.ActivityForm };
 
-const initState: ActivityForm = {
+const initState: interfaceses.ActivityForm = {
     name: "",
     category: "",
     description: "",
@@ -54,9 +38,9 @@ const initState: ActivityForm = {
     sun: false,
 };
 const activityReducer = (
-    initState: ActivityForm,
+    initState: interfaceses.ActivityForm,
     action: Action
-): ActivityForm => {
+): interfaceses.ActivityForm => {
     switch (action.type) {
         case "name":
             return { ...initState, name: action.value };

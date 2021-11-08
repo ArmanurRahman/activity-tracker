@@ -1,63 +1,61 @@
-export const IconEducation: React.FC = () => {
+interface IconInterfaces {
+    classes?: string;
+}
+export const IconEducation: React.FC<IconInterfaces> = ({ classes }) => {
     return (
-        <div>
-            {" "}
-            <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-6 w-6'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-            >
-                <path d='M12 14l9-5-9-5-9 5 9 5z' />
-                <path d='M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z' />
-                <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222'
-                />
-            </svg>
-        </div>
+        <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className={`h-6 w-6 ${classes}`}
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+        >
+            <path d='M12 14l9-5-9-5-9 5 9 5z' />
+            <path d='M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z' />
+            <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222'
+            />
+        </svg>
     );
 };
 
-export const IconWork: React.FC = () => {
+export const IconWork: React.FC<IconInterfaces> = ({ classes }) => {
     return (
-        <div>
-            <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-6 w-6'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-            >
-                <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
-                />
-            </svg>
-        </div>
+        <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className={`h-6 w-6 ${classes}`}
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+        >
+            <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+            />
+        </svg>
     );
 };
 
-export const IconDiet: React.FC = () => {
+export const IconDiet: React.FC<IconInterfaces> = ({ classes }) => {
     return (
-        <div>
-            <svg
-                version='1.1'
-                id='Layer_1'
-                xmlns='http://www.w3.org/2000/svg'
-                x='0px'
-                y='0px'
-                className='h-6 w-6'
-                viewBox='0 0 512 512'
-                enableBackground='new 0 0 512 512'
-            >
-                <path
-                    d='M500.58,74.954c-4.829-10.142-16.974-14.447-27.115-9.61L225.916,183.34l-9.171-18.285L464.822,50.451
+        <svg
+            version='1.1'
+            id='Layer_1'
+            xmlns='http://www.w3.org/2000/svg'
+            x='0px'
+            y='0px'
+            className={`h-6 w-6 ${classes}`}
+            viewBox='0 0 512 512'
+            enableBackground='new 0 0 512 512'
+            stroke='currentColor'
+        >
+            <path
+                d='M500.58,74.954c-4.829-10.142-16.974-14.447-27.115-9.61L225.916,183.34l-9.171-18.285L464.822,50.451
    c0.375-0.174,0.796-0.381,1.168-0.579c9.874-5.361,13.535-17.712,8.182-27.584c-5.355-9.872-17.704-13.542-27.584-8.18
    l-240.21,130.281l-3.821-7.619c-3.025-6.012-10.34-8.45-16.376-5.433c-3.593,1.8-5.696,5.176-6.337,8.854
    c-3.33-1.677-7.289-2.006-10.882-0.211c-3.593,1.8-5.696,5.176-6.337,8.855c-3.333-1.685-7.3-2.015-10.898-0.214
@@ -69,34 +67,28 @@ export const IconDiet: React.FC = () => {
    c13.445,0,25.638-7.888,31.149-20.15l53.523-119.088c2.868-6.376,2.303-13.771-1.493-19.641c-3.795-5.869-10.308-9.412-17.297-9.412
    H228.974l0.035-104.526c1.96-0.001,4.532-0.338,6.287-1.219c6.019-3.021,8.45-10.348,5.433-16.376l-4.431-8.833l253.48-101.448
    c0.382-0.151,0.817-0.341,1.192-0.523C501.112,97.232,505.416,85.096,500.58,74.954z'
-                />
-            </svg>
-        </div>
+            />
+        </svg>
     );
 };
 
-export const IconExercise: React.FC = () => {
+export const IconExercise: React.FC<IconInterfaces> = ({ classes }) => {
     return (
-        <div>
-            <svg
-                className='h-6 w-6'
-                version='1.1'
-                id='Capa_1'
-                xmlns='http://www.w3.org/2000/svg'
-                x='0px'
-                y='0px'
-                viewBox='0 0 458.134 458.134'
-            >
-                <g id='XMLID_108_'>
-                    <circle
-                        id='XMLID_243_'
-                        cx='300.891'
-                        cy='42.646'
-                        r='42.634'
-                    />
-                    <path
-                        id='XMLID_1019_'
-                        d='M355.131,207.487l-64.713-16.633l-24.148-69.382l34.985,52.238l12.657-33.15
+        <svg
+            className={`h-6 w-6 ${classes}`}
+            version='1.1'
+            id='Capa_1'
+            xmlns='http://www.w3.org/2000/svg'
+            x='0px'
+            y='0px'
+            viewBox='0 0 458.134 458.134'
+            stroke='currentColor'
+        >
+            <g id='XMLID_108_'>
+                <circle id='XMLID_243_' cx='300.891' cy='42.646' r='42.634' />
+                <path
+                    id='XMLID_1019_'
+                    d='M355.131,207.487l-64.713-16.633l-24.148-69.382l34.985,52.238l12.657-33.15
        c5.674-14.86-1.773-31.506-16.633-37.18L249.297,85.06c-2.449-0.935-8.43-2.804-16.803-2.742l-81.978,11.672
        c-6.242,0.889-11.657,4.768-14.507,10.391c-2.85,5.624-2.777,12.284,0.197,17.843l39.719,74.256l-15.93,43.483
        c-2.337,5.108-2.782,11.09-0.774,16.808l14.435,41.118l-60.223-6.571c-12.348-1.348-23.46,7.573-24.808,19.927
@@ -107,34 +99,46 @@ export const IconExercise: React.FC = () => {
        l-8.223-78.547l26.666,76.616c2.13,6.118,7.177,10.75,13.435,12.359c7.486,1.924,67.116,17.25,74.744,19.211
        c9.703,2.494,19.781-2.861,23.065-12.396C372.261,221.822,366.057,210.296,355.131,207.487z M183.292,128.346l19.72-2.808
        l-8.839,23.15L183.292,128.346z'
-                    />
-                </g>
-            </svg>
-        </div>
-    );
-};
-
-export const IconFavourite: React.FC = () => {
-    return (
-        <div>
-            <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-6 w-6'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-            >
-                <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
                 />
-            </svg>
-        </div>
+            </g>
+        </svg>
     );
 };
 
-export const IconOther: React.FC = () => {
-    return <div></div>;
+export const IconFavourite: React.FC<IconInterfaces> = ({ classes }) => {
+    return (
+        <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className={`h-6 w-6 ${classes}`}
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+        >
+            <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
+            />
+        </svg>
+    );
+};
+
+export const IconOther: React.FC<IconInterfaces> = ({ classes }) => {
+    return (
+        <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className={`h-6 w-6 ${classes}`}
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+        >
+            <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+            />
+        </svg>
+    );
 };

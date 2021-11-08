@@ -5,6 +5,7 @@ import {
     IconExercise,
     IconFavourite,
     IconWork,
+    IconOther,
 } from "../Icons/Icons";
 import * as types from "../../../types/types";
 
@@ -27,6 +28,7 @@ const options: Option[] = [
     { value: "diet", label: "Diet", Icon: <IconDiet /> },
     { value: "favourite", label: "Favourite", Icon: <IconFavourite /> },
     { value: "exercise", label: "Exercise", Icon: <IconExercise /> },
+    { value: "other", label: "Other", Icon: <IconOther /> },
 ];
 
 const CategorySelect: React.FC<SelectInterface> = ({
