@@ -3,19 +3,23 @@ import * as types from "../../types/types";
 import React, { useState } from "react";
 
 interface ActivityCardInterface {
+    id?: string;
     title: string;
     from: string;
     to: string;
     description: string;
     category: types.Category;
+    onDelete: (id?: string) => void;
 }
 
 const ActivityCard: React.FC<ActivityCardInterface> = ({
+    id,
     title,
     from,
     to,
     description,
     category,
+    onDelete,
 }) => {
     const [isOptionOpen, setIsOptionOpen] = useState<boolean>(false);
     let icon: React.ReactNode = null;
@@ -98,7 +102,10 @@ const ActivityCard: React.FC<ActivityCardInterface> = ({
                         <li className='bg-white px-2 py-1 hover:bg-gray-50 cursor-pointer'>
                             View
                         </li>
-                        <li className='bg-white px-2 py-1 hover:bg-gray-50 cursor-pointer text-red-600 hover:text-red-700'>
+                        <li
+                            className='bg-white px-2 py-1 hover:bg-gray-50 cursor-pointer text-red-600 hover:text-red-700'
+                            onClick={() => onDelete(id)}
+                        >
                             Delete
                         </li>
                     </ul>

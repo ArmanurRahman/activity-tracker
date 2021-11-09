@@ -29,6 +29,24 @@ const Activity: React.FC = () => {
             });
     }, [refresh]);
 
+    const deleteHandler = (id?: string) => {
+        if (!id) {
+            return;
+        }
+        fetch(
+            `https://activity-tracker-55d23-default-rtdb.firebaseio.com/activity/${id}.json?`,
+            { method: "DELETE" }
+        )
+            .then((response) => {
+                //console.log(response.json());
+                setRefresh((prevState) => !prevState);
+            })
+
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     return (
         <div className='w-full h-full flex gap-8 flex-wrap'>
             <div className='w-56 h-56 bg-white rounded-lg'>
@@ -54,12 +72,14 @@ const Activity: React.FC = () => {
             </div>
             {activities?.map((item) => (
                 <ActivityCard
+                    id={item.id}
                     key={item.id}
                     title={item.name}
                     category={item.category}
                     from={item.from}
                     to={item.to}
                     description={item.description}
+                    onDelete={(id) => deleteHandler(id)}
                 />
             ))}
 
